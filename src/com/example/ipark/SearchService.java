@@ -31,8 +31,9 @@ public class SearchService {
 			// String[]{"ids="},
 			// new
 			// String[]{"f8b78cf497fbcd02b5147f01,fd8826e6dab27c560b1cc77e"});
-			String url = buildUrl(Constants.API_PATH, new String[] { "location", "&dis" },
-					new String[] { where, "" + dist });
+			String url = buildUrl(Constants.API_PATH, new String[] { "location", 
+					"&dis", "&hour" },
+					new String[] { where, "" + dist, "" + hour });
 
 			Log.i("**", url);
 			get.setURI(new URI(url));
