@@ -24,7 +24,7 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000d;
+        public static final int action_settings=0x7f08000e;
         public static final int distLabel=0x7f080007;
         public static final int distanceBar=0x7f08000a;
         public static final int durationBar=0x7f080006;
@@ -34,6 +34,7 @@ public final class R {
         public static final int kms=0x7f080009;
         public static final int linearLayout1=0x7f080000;
         public static final int posLabel=0x7f080001;
+        public static final int position=0x7f08000d;
         public static final int searchButton=0x7f08000c;
         public static final int searchText=0x7f080002;
         public static final int timeLabel=0x7f080004;
