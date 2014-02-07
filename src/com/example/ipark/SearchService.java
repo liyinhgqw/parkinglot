@@ -22,7 +22,7 @@ public class SearchService {
 
 	}
 
-	public String searchParking(String where) {
+	public String searchParking(String where, double dist) {
 		Log.i("**", where);
 		try {
 			HttpClient client = new DefaultHttpClient();
@@ -31,9 +31,10 @@ public class SearchService {
 			// String[]{"ids="},
 			// new
 			// String[]{"f8b78cf497fbcd02b5147f01,fd8826e6dab27c560b1cc77e"});
-			String url = buildUrl(Constants.API_PATH, new String[] { "type" },
-					new String[] { "json" });
+			String url = buildUrl(Constants.API_PATH, new String[] { "location", "&dis" },
+					new String[] { where, "" + dist });
 
+			Log.i("**", url);
 			get.setURI(new URI(url));
 			HttpResponse response = client.execute(get);
 

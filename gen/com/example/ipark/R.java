@@ -59,7 +59,7 @@ public final class R {
         public static final int pre_down_=0x7f020023;
     }
     public static final class id {
-        public static final int action_settings=0x7f080013;
+        public static final int action_settings=0x7f080014;
         public static final int bmapView=0x7f080012;
         public static final int distLabel=0x7f080007;
         public static final int distanceBar=0x7f08000a;
@@ -74,6 +74,7 @@ public final class R {
         public static final int popleft=0x7f08000d;
         public static final int popright=0x7f080011;
         public static final int posLabel=0x7f080001;
+        public static final int position=0x7f080013;
         public static final int searchButton=0x7f08000c;
         public static final int searchText=0x7f080002;
         public static final int textcache=0x7f08000f;

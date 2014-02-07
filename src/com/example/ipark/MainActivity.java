@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -251,12 +252,19 @@ public class MainActivity extends Activity {
 		String where = mSearchEditText.getText().toString();
 		double dist = mDistanceBar.getProgress() / 10.0;
 
-		hello.setText("hello");
+//		hello.setText("hello");
 		if (where == null || where.length() <= 0) {
-			where = "@here";
+			where = "nearby";
 		}
-		Log.i(TAG, "Begin search for location with name " + where);
-		new AsysncTaskSearch(this, where).execute();
+		
+		ParkRequest req = new ParkRequest(where, dist);
+		Bundle request = new Bundle();
+		request.putString("place", where);
+		request.putDouble("dist", dist);
+		startActivity(new Intent(this, MapActivity.class).putExtra("request", request));
+		
+//		Log.i(TAG, "Begin search for location with name " + where);
+//		new AsysncTaskSearch(this, where).execute();
 
 	}
 
