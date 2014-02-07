@@ -21,10 +21,46 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int bg_fri_box=0x7f020000;
+        public static final int button_down=0x7f020001;
+        public static final int button_on=0x7f020002;
+        public static final int button_style=0x7f020003;
+        public static final int custom_loc=0x7f020004;
+        public static final int ground_overlay=0x7f020005;
+        public static final int ic_action_search=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int icon_en=0x7f020008;
+        public static final int icon_gcoding=0x7f020009;
+        public static final int icon_geo=0x7f02000a;
+        public static final int icon_marka=0x7f02000b;
+        public static final int icon_markb=0x7f02000c;
+        public static final int icon_markc=0x7f02000d;
+        public static final int icon_markd=0x7f02000e;
+        public static final int icon_marke=0x7f02000f;
+        public static final int icon_markf=0x7f020010;
+        public static final int icon_markg=0x7f020011;
+        public static final int icon_markh=0x7f020012;
+        public static final int icon_marki=0x7f020013;
+        public static final int icon_markj=0x7f020014;
+        public static final int icon_st=0x7f020015;
+        public static final int main_icon_compass=0x7f020016;
+        public static final int main_icon_follow=0x7f020017;
+        public static final int nav_turn_via_1=0x7f020018;
+        public static final int next_=0x7f020019;
+        public static final int next_down_=0x7f02001a;
+        public static final int pop=0x7f02001b;
+        public static final int popup=0x7f02001c;
+        public static final int popup_down=0x7f02001d;
+        public static final int popup_left=0x7f02001e;
+        public static final int popup_middle=0x7f02001f;
+        public static final int popup_right=0x7f020020;
+        public static final int popup_side=0x7f020021;
+        public static final int pre_=0x7f020022;
+        public static final int pre_down_=0x7f020023;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000d;
+        public static final int action_settings=0x7f080013;
+        public static final int bmapView=0x7f080012;
         public static final int distLabel=0x7f080007;
         public static final int distanceBar=0x7f08000a;
         public static final int durationBar=0x7f080006;
@@ -33,15 +69,21 @@ public final class R {
         public static final int hrs=0x7f080005;
         public static final int kms=0x7f080009;
         public static final int linearLayout1=0x7f080000;
+        public static final int popdown=0x7f080010;
+        public static final int popinfo=0x7f08000e;
+        public static final int popleft=0x7f08000d;
+        public static final int popright=0x7f080011;
         public static final int posLabel=0x7f080001;
         public static final int searchButton=0x7f08000c;
         public static final int searchText=0x7f080002;
+        public static final int textcache=0x7f08000f;
         public static final int timeLabel=0x7f080004;
         public static final int timePicker=0x7f080003;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int map_activity=0x7f030001;
+        public static final int custom_text_view=0x7f030001;
+        public static final int map_activity=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f070000;
