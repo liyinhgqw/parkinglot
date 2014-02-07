@@ -75,7 +75,7 @@ public class MapActivity extends Activity {
 		
 		// 初始化搜索模块，注册搜索事件监听
 		mSearch = new MKSearch();
-		mSearch.init(mBMapMan, new MKSearchListener() {
+		mSearch.init(app.mBMapManager, new MKSearchListener() {
 
 			@Override
 			public void onGetAddrResult(MKAddrInfo res, int error) {
