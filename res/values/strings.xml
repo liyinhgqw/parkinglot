@@ -23,6 +23,7 @@
     <string name="label_park_lot_price">停车价格：</string>
     <string name="label_park_lot_max_num">车位总数：</string>
     <string name="label_park_lot_idle_num">空闲车位：</string>
+    <string name="label_park_lot_index">停车指数：</string>
     <string name="title_activity_figure">FigureActivity</string>
 
 </resources>

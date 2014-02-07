@@ -54,6 +54,7 @@ public class MapActivity extends Activity {
 	public TextView popupPrice = null;
 	public TextView popupMaxNum = null;
 	public TextView popupIdleNum = null;
+	private TextView popupIndex = null;
 	public Button button = null;
 	public MapView.LayoutParams layoutParam = null;
 	public OverlayItem mCurItem = null;
@@ -70,6 +71,7 @@ public class MapActivity extends Activity {
 	public MKSearch mSearch;
 	
 	private ParkingLot currentLot;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -220,6 +222,7 @@ public class MapActivity extends Activity {
          popupPrice = (TextView) viewCache.findViewById(R.id.view_park_lot_price);
          popupMaxNum =(TextView) viewCache.findViewById(R.id.view_park_lot_max_num);
          popupIdleNum =(TextView) viewCache.findViewById(R.id.view_park_lot_idle_num);
+         popupIndex =(TextView) viewCache.findViewById(R.id.view_park_lot_index);
          
          button = new Button(this);
          button.setBackgroundResource(R.drawable.popup);
@@ -309,6 +312,7 @@ public class MapActivity extends Activity {
 			popupPrice.setText(lot.getPrice().toString());
 			popupMaxNum.setText(lot.getMaxNum()+"");
 			popupIdleNum.setText(lot.getIdleNum()+"");
+//			popupIndex.setText(lot.getIndex() + "");
 			Bitmap[] bitMaps = { BMapUtil.getBitmapFromView(viewCache)};
 			pop.showPopup(bitMaps, mCurItem.getPoint(), 32);
 			

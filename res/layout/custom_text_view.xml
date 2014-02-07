@@ -14,7 +14,7 @@
         android:paddingBottom="@dimen/popup_parking_lot_padding_bottom"
         android:columnCount="2"
         android:orientation="horizontal"
-        android:rowCount="6" >
+        android:rowCount="7" >
 
         <TextView android:text="@string/label_park_lot_name" />
 
@@ -45,6 +45,16 @@
         <TextView
             android:id="@+id/view_park_lot_idle_num"
             android:text="" />
+        
+        <TextView android:text="@string/label_park_lot_index"
+            android:textColor="#F00" 
+            android:textStyle="bold" />
+        
+        <TextView
+            android:id="@+id/view_park_lot_index"
+            android:text="" 
+            android:textColor="#F00"
+            android:textStyle="bold" />
     </GridLayout>
 
     <TextView
