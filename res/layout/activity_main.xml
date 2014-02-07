@@ -27,7 +27,7 @@
         android:text="@string/position"
         android:textSize="20sp" />
     
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/searchText"
         android:layout_width="232dp"
         android:layout_height="wrap_content"
