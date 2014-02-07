@@ -94,6 +94,11 @@ public class MapActivity extends Activity {
 			}
 		});
 
+		Bundle request = getIntent().getExtras().getBundle("request");
+		this.place = request.getString("place");
+		this.dist = request.getDouble("dist");
+		Log.i("##", place + " " + dist);
+		mSearch.geocode(place, "北京");
 	}
 
 	@Override
@@ -106,11 +111,5 @@ public class MapActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		Bundle request = getIntent().getExtras().getBundle("request");
-		this.place = request.getString("place");
-		this.dist = request.getDouble("dist");
-		Log.i("##", place + " " + dist);
-		mSearch.geocode(place, "北京");
 	}
-
 }
