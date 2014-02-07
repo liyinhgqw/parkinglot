@@ -10,7 +10,6 @@ import org.achartengine.GraphicalView;
 import org.achartengine.chart.PointStyle;
 import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
-import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 import org.achartengine.tools.ZoomEvent;
@@ -23,9 +22,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.provider.CalendarContract.Colors;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,12 +30,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
-public class ChartFragment extends Fragment implements OnClickListener {
+public class CopyOfChartFragment extends Fragment implements OnClickListener {
 
 	private static Random RAND = new Random();
 	private static final String TIME = "H:mm:ss";
 	private static final String[] ITEMS = { "A", "B", "C", "D", "E", "F" };
-	private final static int[] COLORS = { randomColor(), randomColor(), randomColor(), randomColor(), randomColor(), randomColor() };
+	private final int[] COLORS = { randomColor(), randomColor(), randomColor(), randomColor(), randomColor(), randomColor() };
+
 	private static final int[] THRESHOLD_VALUES = { 30, 60, 80 };
 	private static final int[] THRESHOLD_COLORS = { Color.RED, Color.YELLOW, Color.GREEN };
 	private static final String[] THRESHOLD_LABELS = { "Bad", "Good", "Excellent" };
@@ -62,13 +60,6 @@ public class ChartFragment extends Fragment implements OnClickListener {
 	private int mYAxisPadding = 5;
 	
 	private ParkingLot lot = null;
-	private Integer[] idleCount = new Integer[100];
-	
-	private void mockData() {
-		for (int i=0; i < 100 ; i++) {
-			idleCount[i] = i;
-		}
-	}
 
 	private final CountDownTimer mTimer = new CountDownTimer(15 * 60 * 1000, 2000) {
 		@Override
@@ -102,7 +93,6 @@ public class ChartFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mockData();
 		
 		Bundle bundle = getArguments();
 		String gsonStr = bundle.getString("data");
@@ -144,7 +134,7 @@ public class ChartFragment extends Fragment implements OnClickListener {
 		}
 
 		final LinearLayout view = (LinearLayout) inflater.inflate(R.layout.fragment_chart, container, false);
-		mChartView = ChartFactory.getLineChartView(getActivity(), mDataset, mRenderer);
+		mChartView = ChartFactory.getTimeChartView(getActivity(), mDataset, mRenderer, TIME);
 		mChartView.addZoomListener(mZoomListener, true, false);
 		view.addView(mChartView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		return view;
@@ -156,66 +146,26 @@ public class ChartFragment extends Fragment implements OnClickListener {
 		super.onActivityCreated(savedInstanceState);
 
 		
-//		mThresholds = new TimeSeries[3];
-//		mThresholdRenderers = new XYSeriesRenderer[3];
-//
-//		for (int i = 0; i < THRESHOLD_COLORS.length; i++) {
-//			mThresholdRenderers[i] = new XYSeriesRenderer();
-//			mThresholdRenderers[i].setColor(THRESHOLD_COLORS[i]);
-//			mThresholdRenderers[i].setLineWidth(3);
-//
-//			mThresholds[i] = new TimeSeries(THRESHOLD_LABELS[i]);
-//			final long now = new Date().getTime();
-//			mThresholds[i].add(new Date(now - 1000 * 60 * 10), THRESHOLD_VALUES[i]);
-//			mThresholds[i].add(new Date(now + 1000 * 60 * 10), THRESHOLD_VALUES[i]);
-//
-//			mDataset.addSeries(mThresholds[i]);
-//			mRenderer.addSeriesRenderer(mThresholdRenderers[i]);
-//		}
-//
-//		mTimer.start();
-		
-		String title = "百日车位空闲比例：from NOW-100 (day) to NOW-1 (day)";
-		
-//		double[] xvs = new double[] {1.0, 2.0, 3.0};
-//		double[] yvs = new double[] {1.0, 2.0, 3.0};
-		
-		Random rand = new Random();
-		int size = 100;
-		double[] xvs = new double[size];
-		double[] yvs = new double[size];
-		for (int i=0; i<size; i++) {
-			xvs[i] = i;
-			yvs[i] = rand.nextDouble();
+		mThresholds = new TimeSeries[3];
+		mThresholdRenderers = new XYSeriesRenderer[3];
+
+		for (int i = 0; i < THRESHOLD_COLORS.length; i++) {
+			mThresholdRenderers[i] = new XYSeriesRenderer();
+			mThresholdRenderers[i].setColor(THRESHOLD_COLORS[i]);
+			mThresholdRenderers[i].setLineWidth(3);
+
+			mThresholds[i] = new TimeSeries(THRESHOLD_LABELS[i]);
+			final long now = new Date().getTime();
+			mThresholds[i].add(new Date(now - 1000 * 60 * 10), THRESHOLD_VALUES[i]);
+			mThresholds[i].add(new Date(now + 1000 * 60 * 10), THRESHOLD_VALUES[i]);
+
+			mDataset.addSeries(mThresholds[i]);
+			mRenderer.addSeriesRenderer(mThresholdRenderers[i]);
 		}
-		
-		addXYSeries(title, xvs, yvs, 0);
-		
+
+		mTimer.start();
 	}
 
-	public void addXYSeries(String title, double[] xValues,  
-		      double[] yValues, int scale) { 
-	    int length = xValues.length;  
-	    Log.i("**", "" + length);
-//	    for (int i = 0; i < length; i++) {  
-//	      XYSeries series = new XYSeries(titles[i], scale); //这里注意与TimeSeries区别.  
-//	      int seriesLength = xValues.length;  
-//	      for (int k = 0; k < seriesLength; k++) {  
-//	        series.add(xValues[k], yValues[k]);  
-//	      }  
-//	      mDataset.addSeries(series);  
-//	      mRenderer.addSeriesRenderer(getSeriesRenderer(COLORS[2]));
-//	    }  
-	    
-	    XYSeries series = new XYSeries(title, scale);  
-	    for (int i = 0; i < length; i++) {  
-		      series.add(xValues[i], yValues[i]);  
-		}  
-	    mDataset.addSeries(series); 
-	    mRenderer.addSeriesRenderer(getSeriesRenderer(COLORS[1]));
-	}
-	
-	
 	@Override
 	public void onStop() {
 		super.onStop();
@@ -292,7 +242,7 @@ public class ChartFragment extends Fragment implements OnClickListener {
 
 	private XYSeriesRenderer getSeriesRenderer(final int color) {
 		final XYSeriesRenderer r = new XYSeriesRenderer();
-		r.setDisplayChartValues(false);
+		r.setDisplayChartValues(true);
 		r.setChartValuesTextSize(30);
 		r.setPointStyle(PointStyle.CIRCLE);
 		r.setColor(color);
@@ -304,15 +254,6 @@ public class ChartFragment extends Fragment implements OnClickListener {
 	private static int randomColor() {
 		final float hue = (RAND.nextInt(360) + RATIO);
 		return Color.HSVToColor(new float[] { hue, 0.8f, 0.9f });
-	}
-	
-	private static int getColor(double value) {
-		int level = (int) (value * 6);
-		if (level < 0) 
-			level = 0;
-		if (level > 5)
-			level = 5;
-		return COLORS[level];
 	}
 
 	@Override

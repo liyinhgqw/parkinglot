@@ -33,10 +33,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
-public class ChartFragment extends Fragment implements OnClickListener {
+public class PeriodChartFragment extends Fragment implements OnClickListener {
 
 	private static Random RAND = new Random();
-	private static final String TIME = "H:mm:ss";
+	private static final String TIME = "H:mm";
 	private static final String[] ITEMS = { "A", "B", "C", "D", "E", "F" };
 	private final static int[] COLORS = { randomColor(), randomColor(), randomColor(), randomColor(), randomColor(), randomColor() };
 	private static final int[] THRESHOLD_VALUES = { 30, 60, 80 };
@@ -144,7 +144,7 @@ public class ChartFragment extends Fragment implements OnClickListener {
 		}
 
 		final LinearLayout view = (LinearLayout) inflater.inflate(R.layout.fragment_chart, container, false);
-		mChartView = ChartFactory.getLineChartView(getActivity(), mDataset, mRenderer);
+		mChartView = ChartFactory.getTimeChartView(getActivity(), mDataset, mRenderer, TIME);
 		mChartView.addZoomListener(mZoomListener, true, false);
 		view.addView(mChartView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		return view;
@@ -175,17 +175,26 @@ public class ChartFragment extends Fragment implements OnClickListener {
 //
 //		mTimer.start();
 		
-		String title = "百日车位空闲比例：from NOW-100 (day) to NOW-1 (day)";
+		String title = "平均每日车位空闲比例：from 0:00 to 24:00";
 		
-//		double[] xvs = new double[] {1.0, 2.0, 3.0};
+//		Date[] xvs = new Date[3];
+//		xvs[0] = new Date(); xvs[0].setHours(1); xvs[0].setMinutes(0);
+//		xvs[1] = new Date(); xvs[1].setHours(13); xvs[1].setMinutes(30);
+//		xvs[2] = new Date(); xvs[2].setHours(2); xvs[2].setMinutes(0);
 //		double[] yvs = new double[] {1.0, 2.0, 3.0};
 		
-		Random rand = new Random();
-		int size = 100;
-		double[] xvs = new double[size];
+		int size = 48;
+		Date[] xvs = new Date[size];
 		double[] yvs = new double[size];
+		Random rand = new Random();
 		for (int i=0; i<size; i++) {
-			xvs[i] = i;
+			xvs[i] = new Date();
+			xvs[i].setHours(i/2);
+			if (i%2 == 0)
+				xvs[i].setMinutes(0);
+			else 
+				xvs[i].setMinutes(30);
+			
 			yvs[i] = rand.nextDouble();
 		}
 		
@@ -193,7 +202,7 @@ public class ChartFragment extends Fragment implements OnClickListener {
 		
 	}
 
-	public void addXYSeries(String title, double[] xValues,  
+	public void addXYSeries(String title, Date[] xValues,  
 		      double[] yValues, int scale) { 
 	    int length = xValues.length;  
 	    Log.i("**", "" + length);
@@ -207,7 +216,7 @@ public class ChartFragment extends Fragment implements OnClickListener {
 //	      mRenderer.addSeriesRenderer(getSeriesRenderer(COLORS[2]));
 //	    }  
 	    
-	    XYSeries series = new XYSeries(title, scale);  
+	    TimeSeries series = new TimeSeries(title);
 	    for (int i = 0; i < length; i++) {  
 		      series.add(xValues[i], yValues[i]);  
 		}  

@@ -40,7 +40,7 @@ public class FigureActivity extends FragmentActivity {
 	}
 	
 	public void onPeriodStatClick(View v) {
-		ChartFragment chartFragment = new ChartFragment();
+		PeriodChartFragment chartFragment = new PeriodChartFragment();
 		chartFragment.setArguments(bundle);
 		getSupportFragmentManager().beginTransaction().replace(R.id.chart, chartFragment).commit();
 	}
