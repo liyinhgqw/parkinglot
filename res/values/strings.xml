@@ -11,5 +11,6 @@
     <string name="hrs">hrs</string>
     <string name="durationHint">3.0</string>
     <string name="distance">Distance</string>
+    <string name="kms">kms</string>
 
 </resources>

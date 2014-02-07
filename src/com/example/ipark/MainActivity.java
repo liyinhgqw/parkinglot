@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -18,16 +20,30 @@ public class MainActivity extends Activity {
 
 	private TextView hello;
 	
-	private View mDistanceBar;
-
-    private Handler searchResultHandler = new Handler() {
+	private SeekBar mDistanceBar;
+	
+	private TextView mDistText;
+	
+	private OnSeekBarChangeListener distBarListener = new OnSeekBarChangeListener() {
 
 		@Override
-		public void handleMessage(Message msg) {
-			super.handleMessage(msg);  
-			hello.setText("Search result : " + msg.getData());
+		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+			mDistText.setText(String.valueOf(seekBar.getProgress() / 10.0 + " kms"));
 		}
-    };
+
+		@Override
+		public void onStartTrackingTouch(SeekBar seekBar) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onStopTrackingTouch(SeekBar seekBar) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	};
 
     
 	@Override
@@ -48,12 +64,20 @@ public class MainActivity extends Activity {
 	
     private void setupView() {
     	mSearchEditText = (EditText)findViewById(R.id.searchText);
-    	mDistanceBar = findViewById(R.id.distanceBar);
+    	mDistText = (TextView) findViewById(R.id.kms);
+    	mDistanceBar = (SeekBar) findViewById(R.id.distanceBar);
+    	mDistanceBar.setOnSeekBarChangeListener(distBarListener);
+    	mDistanceBar.setMax(50);	// dist unit is 0.1km
+    	mDistanceBar.setProgress(10);
+
     	hello = (TextView)findViewById(R.id.hello);
     }
 
     public void onSearchParkingClick (View sender) {
     	String where = mSearchEditText.getText().toString();
+    	double dist = mDistanceBar.getProgress() / 10.0;
+    	
+    	
     	hello.setText("hello");
     	if (where == null || where.length() <= 0) {
     		where = "@here";

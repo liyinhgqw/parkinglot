@@ -18,28 +18,29 @@
         android:orientation="vertical" >
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/hello"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/durationEdit"
-        android:layout_marginBottom="23dp"
-        android:onClick="onSearchParkingClick"
-        android:text="GO" />
-
     <TextView
+        android:id="@+id/posLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/searchText"
         android:layout_alignBottom="@+id/searchText"
         android:layout_alignLeft="@+id/linearLayout1"
         android:text="@string/position"
         android:textSize="20sp" />
+    
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/timePicker"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/linearLayout1"
+        android:ems="10"
+        android:hint="@string/here"
+        android:inputType="textPostalAddress"
+        android:singleLine="false" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/timeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/linearLayout1"
@@ -47,82 +48,91 @@
         android:layout_marginTop="36dp"
         android:text="@string/time"
         android:textSize="20sp" />
-
+        
     <TextView
-        android:id="@+id/TextView01"
+        android:id="@+id/hrs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/hello"
-        android:layout_below="@+id/timePicker1"
-        android:layout_marginTop="26dp"
-        android:text="@string/duration"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/TextView02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/durationEdit"
-        android:layout_alignBottom="@+id/durationEdit"
-        android:layout_alignRight="@+id/durationEdit"
-        android:layout_marginRight="20dp"
+        android:layout_alignBaseline="@+id/durationBar"
+        android:layout_alignBottom="@+id/durationBar"
+        android:layout_alignParentRight="true"
         android:text="@string/hrs"
         android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/searchText"
-        android:layout_width="232dp"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/timePicker1"
-        android:layout_alignRight="@+id/timePicker1"
-        android:layout_alignTop="@+id/linearLayout1"
-        android:ems="10"
-        android:hint="@string/here"
-        android:inputType="textPostalAddress"
-        android:singleLine="false" />
 
-    <EditText
-        android:id="@+id/durationEdit"
+
+
+
+    <TextView
+        android:id="@+id/distLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TextView01"
-        android:layout_alignBottom="@+id/TextView01"
-        android:layout_alignLeft="@+id/timePicker1"
-        android:layout_alignParentRight="true"
-        android:ems="10"
-        android:hint="@string/durationHint"
-        android:inputType="number" />
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_below="@+id/durationLabel"
+        android:layout_marginTop="30dp"
+        android:text="@string/distance"
+        android:textSize="20sp" />
 
-    <TimePicker
-        android:id="@+id/timePicker1"
+    <TextView
+        android:id="@+id/kms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/distanceBar"
+        android:layout_alignBottom="@+id/distanceBar"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/textView1" />
+        android:text="@string/kms"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/hello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:text="@string/hello_world" />
 
     <TextView
-        android:id="@+id/distanceBar"
+        android:id="@+id/durationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TextView01"
-        android:layout_below="@+id/durationEdit"
-        android:layout_marginTop="31dp"
-        android:text="@string/distance"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_below="@+id/timePicker"
+        android:layout_marginTop="27dp"
+        android:text="@string/duration"
         android:textSize="20sp" />
 
     <SeekBar
-        android:id="@+id/seekBar1"
-        android:layout_width="match_parent"
+        android:id="@+id/durationBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/searchText"
-        android:layout_alignTop="@+id/TextView03" />
+        android:layout_alignBottom="@+id/durationLabel"
+        android:layout_alignLeft="@+id/timePicker"
+        android:layout_toLeftOf="@+id/hrs" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="17dp"
+        android:layout_toRightOf="@+id/linearLayout1"
+        android:onClick="onSearchParkingClick"
+        android:text="GO" />
+
+    <SeekBar
+        android:id="@+id/distanceBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/distLabel"
+        android:layout_alignLeft="@+id/timePicker"
+        android:layout_toLeftOf="@+id/kms" />
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/timeLabel" />
 
 </RelativeLayout>
