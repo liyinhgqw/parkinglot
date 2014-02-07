@@ -1,61 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popinfo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:orientation="horizontal"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    >
-	    
-    <TextView
-        android:id="@+id/popleft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/popup_side"
-         android:gravity="center"
-        android:textStyle="bold"
-         android:textColor="#3814ed"
-        android:text="更新位置"
-        android:textSize="12sp" />
-
-   
-     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-	    android:id="@+id/popinfo"
-	    >
-	    
-    <TextView
-        android:id="@+id/textcache"
+    <GridLayout
+        android:id="@+id/view_park_lot_all_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/popup_middle"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:textSize="12sp" />
-    
-     <TextView
+        android:padding="@dimen/popup_parking_lot_padding"
+        android:paddingBottom="@dimen/popup_parking_lot_padding_bottom"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:rowCount="6" >
+
+        <TextView android:text="@string/label_park_lot_name" />
+
+        <TextView
+            android:id="@+id/view_park_lot_name"
+            android:text="" />
+
+        <TextView android:text="@string/label_park_lot_address" />
+
+        <TextView
+            android:id="@+id/view_park_lot_address"
+            android:text="" />
+
+        <TextView android:text="@string/label_park_lot_price" />
+
+        <TextView
+            android:id="@+id/view_park_lot_price"
+            android:text="" />
+
+        <TextView android:text="@string/label_park_lot_max_num" />
+
+        <TextView
+            android:id="@+id/view_park_lot_max_num"
+            android:text="" />
+
+        <TextView android:text="@string/label_park_lot_idle_num" />
+
+        <TextView
+            android:id="@+id/view_park_lot_idle_num"
+            android:text="" />
+    </GridLayout>
+
+    <TextView
         android:id="@+id/popdown"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/popup_down"
         android:textColor="@android:color/black"
-        android:textSize="12sp" />
-    
-    
-    </LinearLayout>
-
-     
-    <TextView
-        android:id="@+id/popright"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/popup_side"
-        android:textColor="#3814ed"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:text="更新marker"
         android:textSize="12sp" />
 
 </LinearLayout>

@@ -1,10 +1,12 @@
 package com.example.ipark;
 
 import com.google.gson.Gson;
+import com.wandoujia.mms.model.dao.ParkingLotResult;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AsysncTaskSearch extends AsyncTask<Void, Void, String> {
 
@@ -34,7 +36,14 @@ public class AsysncTaskSearch extends AsyncTask<Void, Void, String> {
 		
 		Gson gson = new Gson();
 		ParkingLotResult pResult= gson.fromJson(result, ParkingLotResult.class);
-		posText.setText(""+pResult);
+		// posText.setText(""+pResult);
+		if (pResult.getStatus() == -1 || pResult.getResults().size() == 0) {
+			Toast.makeText(c, "未找到结果", Toast.LENGTH_LONG).show();
+		} else {
+			MapActivity mapActiviy = (MapActivity)(c);
+			mapActiviy.parking_lots = pResult.getResults();
+			mapActiviy.ShowParkingLots();
+		}
 	}
 
 	@Override

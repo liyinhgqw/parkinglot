@@ -1,10 +1,9 @@
 package com.example.ipark;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.baidu.mapapi.BMapManager;
-import com.baidu.mapapi.map.Ground;
-import com.baidu.mapapi.map.GroundOverlay;
 import com.baidu.mapapi.map.ItemizedOverlay;
 import com.baidu.mapapi.map.MapController;
 import com.baidu.mapapi.map.MapView;
@@ -42,27 +41,28 @@ import android.widget.Toast;
 
 public class MapActivity extends Activity {
 
-	private MapView mMapView;
-	private MapController mMapController;
-	private MyOverlay mOverlay;
-	private PopupOverlay   pop  = null;
-	private ArrayList<OverlayItem>  mItems = null; 
-	private TextView  popupText = null;
-	private View viewCache = null;
-	private View popupInfo = null;
-	private View popupLeft = null;
-	private View popupRight = null;
-	private Button button = null;
-	private MapView.LayoutParams layoutParam = null;
-	private OverlayItem mCurItem = null;
+	public MapView mMapView;
+	public MapController mMapController;
+	public MyOverlay mOverlay;
+	public PopupOverlay   pop  = null;
+	public ArrayList<OverlayItem>  mItems = null; 
+	public View viewCache = null;
+	public TextView popupName = null;
+	public TextView popupAddress = null;
+	public TextView popupPrice = null;
+	public TextView popupMaxNum = null;
+	public TextView popupIdleNum = null;
+	public Button button = null;
+	public MapView.LayoutParams layoutParam = null;
+	public OverlayItem mCurItem = null;
 
-	private String place;
+	public String place;
 	
-	private double dist;
+	public double dist;
 
-	private BMapManager mBMapMan;
+	public BMapManager mBMapMan;
 
-	private MKSearch mSearch;
+	public MKSearch mSearch;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -145,17 +145,16 @@ public class MapActivity extends Activity {
         /**
          * 设置地图缩放级别
          */
-        mMapController.setZoom(14);
+        mMapController.setZoom(16);
         /**
          * 显示内置缩放控件
          */
         mMapView.setBuiltInZoomControls(true);
         
-        initOverlay();
+        // initOverlay();
 	}
 
-	private void initOverlay() {
-		GetMockParkingLots();
+	public void ShowParkingLots() {
 		// 设定地图中心点
 		Location center = GetCenterLocation();
         GeoPoint p = new GeoPoint((int)(center.lat * 1E6), (int)(center.lng* 1E6));
@@ -165,7 +164,7 @@ public class MapActivity extends Activity {
 		 */
 		mOverlay = new MyOverlay(getResources().getDrawable(
 				R.drawable.icon_gcoding), mMapView);
-		for (int i = 0; i < parking_lots.size(); ++i) {
+		for (int i = parking_lots.size() - 1; i >=0; --i) {  // from the last, so the 1st on the top
 			/**
 			 * 准备overlay 数据
 			 */
@@ -197,10 +196,11 @@ public class MapActivity extends Activity {
          mMapView.refresh();
          // 向地图添加自定义View.
          viewCache = getLayoutInflater().inflate(R.layout.custom_text_view, null);
-         popupInfo = (View) viewCache.findViewById(R.id.popinfo);
-         popupLeft = (View) viewCache.findViewById(R.id.popleft);
-         popupRight = (View) viewCache.findViewById(R.id.popright);
-         popupText =(TextView) viewCache.findViewById(R.id.textcache);
+         popupName = (TextView) viewCache.findViewById(R.id.view_park_lot_name);
+         popupAddress = (TextView) viewCache.findViewById(R.id.view_park_lot_address);
+         popupPrice = (TextView) viewCache.findViewById(R.id.view_park_lot_price);
+         popupMaxNum =(TextView) viewCache.findViewById(R.id.view_park_lot_max_num);
+         popupIdleNum =(TextView) viewCache.findViewById(R.id.view_park_lot_idle_num);
          
          button = new Button(this);
          button.setBackgroundResource(R.drawable.popup);
@@ -212,13 +212,18 @@ public class MapActivity extends Activity {
 			}
          };
          pop = new PopupOverlay(mMapView,popListener);
-
 	}
-	private Location GetCenterLocation() {
+
+
+	public void initOverlay() {
+		GetMockParkingLots();
+	}
+
+	public Location GetCenterLocation() {
 		return parking_lots.get(0).getLocation();
 	}
 	
-	private int GetDrawableIconId(int seq) {
+	public int GetDrawableIconId(int seq) {
 		int[] icons = {
 				R.drawable.icon_marka, 
 				R.drawable.icon_markb, 
@@ -253,16 +258,16 @@ public class MapActivity extends Activity {
 		parking_lot.setName("人民日报社住宅区停车场");
 		parking_lot.setAddress("人民日报社住宅楼附近");
 		Location loc = new Location();
-		loc.lng = (float) 116.482;
-		loc.lat = (float) 39.9257;
+		loc.lng = 116.482;
+		loc.lat = 39.9257;
 		parking_lot.setLocation(loc);
-		parking_lot.setPrice(5.0f);
+		parking_lot.setPrice(5.0);
 		parking_lot.setMaxNum(262);
 		parking_lot.setIdleNum(50);
 		parking_lots.add(parking_lot);
 	}
 
-	private ArrayList<ParkingLot> parking_lots;
+	public List<ParkingLot> parking_lots;
 	
     public class MyOverlay extends ItemizedOverlay {
 
@@ -273,13 +278,19 @@ public class MapActivity extends Activity {
 
 		@Override
 		public boolean onTap(int index){
-			OverlayItem item = getItem(index);
-			mCurItem = item;
-			popupText.setText(getItem(index).getTitle());
-			Bitmap[] bitMaps = { BMapUtil.getBitmapFromView(popupLeft),
-					BMapUtil.getBitmapFromView(popupInfo),
-					BMapUtil.getBitmapFromView(popupRight) };
-			pop.showPopup(bitMaps, item.getPoint(), 32);
+			ParkingLot lot = parking_lots.get(parking_lots.size() - index - 1);
+			if (lot == null) {
+				Log.i("INDEX out of range", index + " of " + mItems.size());
+				return false;
+			}
+			mCurItem = getItem(index);
+			popupName.setText(lot.getName());
+			popupAddress.setText(lot.getAddress());
+			popupPrice.setText(lot.getPrice().toString());
+			popupMaxNum.setText(lot.getMaxNum()+"");
+			popupIdleNum.setText(lot.getIdleNum()+"");
+			Bitmap[] bitMaps = { BMapUtil.getBitmapFromView(viewCache)};
+			pop.showPopup(bitMaps, mCurItem.getPoint(), 32);
 			return true;
 		}
 		

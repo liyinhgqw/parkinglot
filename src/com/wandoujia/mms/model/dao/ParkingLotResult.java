@@ -1,6 +1,7 @@
-package com.example.ipark;
+package com.wandoujia.mms.model.dao;
 
 import java.util.List;
+
 
 public class ParkingLotResult {
     private Integer status;

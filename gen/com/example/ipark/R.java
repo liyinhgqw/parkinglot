@@ -19,6 +19,8 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f040000;
         public static final int activity_vertical_margin=0x7f040001;
+        public static final int popup_parking_lot_padding=0x7f040002;
+        public static final int popup_parking_lot_padding_bottom=0x7f040003;
     }
     public static final class drawable {
         public static final int bg_fri_box=0x7f020000;
@@ -59,8 +61,8 @@ public final class R {
         public static final int pre_down_=0x7f020023;
     }
     public static final class id {
-        public static final int action_settings=0x7f080014;
-        public static final int bmapView=0x7f080012;
+        public static final int action_settings=0x7f080017;
+        public static final int bmapView=0x7f080015;
         public static final int distLabel=0x7f080007;
         public static final int distanceBar=0x7f08000a;
         public static final int durationBar=0x7f080006;
@@ -69,17 +71,20 @@ public final class R {
         public static final int hrs=0x7f080005;
         public static final int kms=0x7f080009;
         public static final int linearLayout1=0x7f080000;
-        public static final int popdown=0x7f080010;
-        public static final int popinfo=0x7f08000e;
-        public static final int popleft=0x7f08000d;
-        public static final int popright=0x7f080011;
+        public static final int popdown=0x7f080014;
+        public static final int popinfo=0x7f08000d;
         public static final int posLabel=0x7f080001;
-        public static final int position=0x7f080013;
+        public static final int position=0x7f080016;
         public static final int searchButton=0x7f08000c;
         public static final int searchText=0x7f080002;
-        public static final int textcache=0x7f08000f;
         public static final int timeLabel=0x7f080004;
         public static final int timePicker=0x7f080003;
+        public static final int view_park_lot_address=0x7f080010;
+        public static final int view_park_lot_all_info=0x7f08000e;
+        public static final int view_park_lot_idle_num=0x7f080013;
+        public static final int view_park_lot_max_num=0x7f080012;
+        public static final int view_park_lot_name=0x7f08000f;
+        public static final int view_park_lot_price=0x7f080011;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -100,6 +105,11 @@ public final class R {
         public static final int here=0x7f050003;
         public static final int hrs=0x7f050007;
         public static final int kms=0x7f05000a;
+        public static final int label_park_lot_address=0x7f05000d;
+        public static final int label_park_lot_idle_num=0x7f050010;
+        public static final int label_park_lot_max_num=0x7f05000f;
+        public static final int label_park_lot_name=0x7f05000c;
+        public static final int label_park_lot_price=0x7f05000e;
         public static final int position=0x7f050004;
         public static final int time=0x7f050005;
         public static final int title_activity_map=0x7f05000b;
