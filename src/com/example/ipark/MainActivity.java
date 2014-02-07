@@ -243,8 +243,8 @@ public class MainActivity extends Activity {
 		mDistText = (TextView) findViewById(R.id.kms);
 		mDistanceBar = (SeekBar) findViewById(R.id.distanceBar);
 		mDistanceBar.setOnSeekBarChangeListener(distBarListener);
-		mDistanceBar.setMax(50); // dist unit is 0.1km
-		mDistanceBar.setProgress(10);
+		mDistanceBar.setMax(15); // dist unit is 0.1km
+		mDistanceBar.setProgress(5);
 
 		timePicker = (TimePicker) findViewById(R.id.timePicker);
 	}
@@ -252,7 +252,7 @@ public class MainActivity extends Activity {
 	public void onSearchParkingClick(View sender) {
 		String where = mSearchEditText.getText().toString();
 		if (where == null || where.isEmpty()) {
-			where = "普天得胜大厦";
+			where = "普天德胜大厦";
 			mSearchEditText.setText(where);
 		}
 		double dist = mDistanceBar.getProgress() / 10.0;
