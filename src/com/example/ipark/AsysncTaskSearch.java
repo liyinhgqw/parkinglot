@@ -16,17 +16,23 @@ public class AsysncTaskSearch extends AsyncTask<Void, Void, String> {
 	
 	private double dist;
 	
+	private int hour;
+	
+	private int mins;
+	
 	private SearchService searchService = new SearchService();
 	
-	public AsysncTaskSearch(Activity c, String place, double dist) {
+	public AsysncTaskSearch(Activity c, String place, double dist, int hour, int mins) {
 		this.c = c;
 		this.place = place;
 		this.dist = dist * 1000.0;
+		this.hour = hour;
+		this.mins = mins;
 	}
 	
 	@Override
 	protected String doInBackground(Void... arg0) {
-		String result = searchService.searchParking(place, dist);
+		String result = searchService.searchParking(place, dist, hour, mins);
 		return result;
 	}
 

@@ -60,8 +60,10 @@ public class MapActivity extends Activity {
 	
 	public double dist;
 
-	public BMapManager mBMapMan;
-
+	private int hour;
+	
+	private int mins;
+	
 	public MKSearch mSearch;
 	
 	@Override
@@ -91,7 +93,7 @@ public class MapActivity extends Activity {
 					Log.i("##", position);
 					Toast.makeText(MapActivity.this, position, Toast.LENGTH_LONG).show();
 					
-					new AsysncTaskSearch(MapActivity.this, position, dist).execute();
+					new AsysncTaskSearch(MapActivity.this, position, dist, hour, mins).execute();
 				}
 			}
 
@@ -132,6 +134,7 @@ public class MapActivity extends Activity {
 			}
 		});
 
+
 		
         mMapView = (MapView)findViewById(R.id.bmapView);
         /**
@@ -151,7 +154,15 @@ public class MapActivity extends Activity {
          */
         mMapView.setBuiltInZoomControls(true);
         
-        // initOverlay();
+//        initOverlay();
+              
+		Bundle request = getIntent().getExtras().getBundle("request");
+		this.place = request.getString("place");
+		this.dist = request.getDouble("dist");
+		this.hour = request.getInt("hour");
+		this.mins = request.getInt("mins");
+		Log.i("##", place + " " + dist + " " + hour + ":" + mins);
+		mSearch.geocode(place, "北京");
 	}
 
 	public void ShowParkingLots() {
@@ -308,11 +319,5 @@ public class MapActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		Bundle request = getIntent().getExtras().getBundle("request");
-		this.place = request.getString("place");
-		this.dist = request.getDouble("dist");
-		Log.i("##", place + " " + dist);
-		mSearch.geocode(place, "北京");
 	}
-
 }

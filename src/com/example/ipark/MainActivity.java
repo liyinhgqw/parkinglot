@@ -31,6 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -41,8 +42,6 @@ public class MainActivity extends Activity {
 
 	private AutoCompleteTextView mSearchEditText;
 
-	private TextView hello;
-
 	private SeekBar mDistanceBar;
 
 	private TextView mDistText;
@@ -50,8 +49,10 @@ public class MainActivity extends Activity {
 	private MKSearch mSearch = null;
 
 	private ArrayAdapter<String> sugAdapter = null;
-	private int load_Index;
 
+	private TimePicker timePicker = null;
+			
+	
 	private OnSeekBarChangeListener distBarListener = new OnSeekBarChangeListener() {
 
 		@Override
@@ -245,14 +246,16 @@ public class MainActivity extends Activity {
 		mDistanceBar.setMax(50); // dist unit is 0.1km
 		mDistanceBar.setProgress(10);
 
-		hello = (TextView) findViewById(R.id.hello);
+		timePicker = (TimePicker) findViewById(R.id.timePicker);
 	}
 
 	public void onSearchParkingClick(View sender) {
 		String where = mSearchEditText.getText().toString();
 		double dist = mDistanceBar.getProgress() / 10.0;
-
-//		hello.setText("hello");
+		int hour = timePicker.getCurrentHour();
+		int mins = timePicker.getCurrentMinute();
+		Log.i("$$", hour + ":" + mins);
+		
 		if (where == null || where.length() <= 0) {
 			where = "nearby";
 		}
@@ -261,6 +264,8 @@ public class MainActivity extends Activity {
 		Bundle request = new Bundle();
 		request.putString("place", where);
 		request.putDouble("dist", dist);
+		request.putInt("hour", hour);
+		request.putInt("mins", mins);
 		startActivity(new Intent(this, MapActivity.class).putExtra("request", request));
 		
 //		Log.i(TAG, "Begin search for location with name " + where);
