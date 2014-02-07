@@ -49,15 +49,6 @@
         android:text="@string/time"
         android:textSize="20sp" />
         
-    <TextView
-        android:id="@+id/hrs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/durationBar"
-        android:layout_alignBottom="@+id/durationBar"
-        android:layout_alignParentRight="true"
-        android:text="@string/hrs"
-        android:textSize="20sp" />
 
 
 
@@ -68,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/linearLayout1"
-        android:layout_below="@+id/durationLabel"
+        android:layout_below="@+id/timePicker"
         android:layout_marginTop="30dp"
         android:text="@string/distance"
         android:textSize="20sp" />
@@ -84,23 +75,6 @@
         android:textSize="20sp" />
 
 
-    <TextView
-        android:id="@+id/durationLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linearLayout1"
-        android:layout_below="@+id/timePicker"
-        android:layout_marginTop="27dp"
-        android:text="@string/duration"
-        android:textSize="20sp" />
-
-    <SeekBar
-        android:id="@+id/durationBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/durationLabel"
-        android:layout_alignLeft="@+id/timePicker"
-        android:layout_toLeftOf="@+id/hrs" />
 
     <Button
         android:id="@+id/searchButton"

@@ -59,24 +59,21 @@ public final class R {
         public static final int pre_down_=0x7f020023;
     }
     public static final class id {
-        public static final int action_settings=0x7f080013;
-        public static final int bmapView=0x7f080011;
-        public static final int distLabel=0x7f080007;
-        public static final int distanceBar=0x7f08000a;
-        public static final int durationBar=0x7f080006;
-        public static final int durationLabel=0x7f080008;
-        public static final int hrs=0x7f080005;
-        public static final int kms=0x7f080009;
+        public static final int action_settings=0x7f080010;
+        public static final int bmapView=0x7f08000e;
+        public static final int distLabel=0x7f080005;
+        public static final int distanceBar=0x7f080007;
+        public static final int kms=0x7f080006;
         public static final int linearLayout1=0x7f080000;
-        public static final int popdown=0x7f08000f;
-        public static final int popinfo=0x7f08000d;
-        public static final int popleft=0x7f08000c;
-        public static final int popright=0x7f080010;
+        public static final int popdown=0x7f08000c;
+        public static final int popinfo=0x7f08000a;
+        public static final int popleft=0x7f080009;
+        public static final int popright=0x7f08000d;
         public static final int posLabel=0x7f080001;
-        public static final int position=0x7f080012;
-        public static final int searchButton=0x7f08000b;
+        public static final int position=0x7f08000f;
+        public static final int searchButton=0x7f080008;
         public static final int searchText=0x7f080002;
-        public static final int textcache=0x7f08000e;
+        public static final int textcache=0x7f08000b;
         public static final int timeLabel=0x7f080004;
         public static final int timePicker=0x7f080003;
     }

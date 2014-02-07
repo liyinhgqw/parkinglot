@@ -254,7 +254,7 @@ public class MainActivity extends Activity {
 		double dist = mDistanceBar.getProgress() / 10.0;
 		int hour = timePicker.getCurrentHour();
 		int mins = timePicker.getCurrentMinute();
-		Log.i("$$", hour + ":" + mins);
+		Log.i("$$", where + " " + hour + ":" + mins);
 		
 		if (where == null || where.length() <= 0) {
 			where = "nearby";
