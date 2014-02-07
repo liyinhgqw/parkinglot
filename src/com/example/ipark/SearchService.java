@@ -22,7 +22,7 @@ public class SearchService {
 
 	}
 
-	public String searchParking(String where, double dist) {
+	public String searchParking(String where, double dist, int hour, int mins) {
 		Log.i("**", where);
 		try {
 			HttpClient client = new DefaultHttpClient();
