@@ -1,5 +1,6 @@
 package com.wandoujia.mms.model.dao;
 
+
 /**
  * Created with IntelliJ IDEA.
  * User: chendong
@@ -10,14 +11,14 @@ package com.wandoujia.mms.model.dao;
 public class ParkingLot {
 
     public static class Location {
-        public Float lat;
-        public Float lng;
+        public Double lat;
+        public Double lng;
     }
     private String uid;
     private String name;
     private String address;
     private Location location;
-    private Float price;
+    private Double price;
     private Integer maxNum;
     private Integer idleNum;
     private String description;
@@ -76,11 +77,11 @@ public class ParkingLot {
         this.description = description;
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

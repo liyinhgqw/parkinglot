@@ -251,6 +251,10 @@ public class MainActivity extends Activity {
 
 	public void onSearchParkingClick(View sender) {
 		String where = mSearchEditText.getText().toString();
+		if (where == null || where.isEmpty()) {
+			where = "普天得胜大厦";
+			mSearchEditText.setText(where);
+		}
 		double dist = mDistanceBar.getProgress() / 10.0;
 		int hour = timePicker.getCurrentHour();
 		int mins = timePicker.getCurrentMinute();
