@@ -12,11 +12,13 @@ import com.baidu.mapapi.map.PopupClickListener;
 import com.baidu.mapapi.map.PopupOverlay;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.example.ipark.DemoApplication;
+import com.google.gson.Gson;
 import com.wandoujia.mms.model.dao.ParkingLot;
 import com.wandoujia.mms.model.dao.ParkingLot.Location;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -55,6 +57,7 @@ public class MapActivity extends Activity {
 	public Button button = null;
 	public MapView.LayoutParams layoutParam = null;
 	public OverlayItem mCurItem = null;
+	public Button detailButton = null;
 
 	public String place;
 	
@@ -66,6 +69,8 @@ public class MapActivity extends Activity {
 	
 	public MKSearch mSearch;
 	
+	private ParkingLot currentLot;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,6 +79,9 @@ public class MapActivity extends Activity {
             app.initEngineManager(getApplicationContext());
         }
 		setContentView(R.layout.map_activity);
+		
+		detailButton = (Button) findViewById(R.id.detailButton);
+//		detailButton.setEnabled(false);
 		
 		// 初始化搜索模块，注册搜索事件监听
 		mSearch = new MKSearch();
@@ -223,6 +231,7 @@ public class MapActivity extends Activity {
 			}
          };
          pop = new PopupOverlay(mMapView,popListener);
+         
 	}
 
 
@@ -302,6 +311,9 @@ public class MapActivity extends Activity {
 			popupIdleNum.setText(lot.getIdleNum()+"");
 			Bitmap[] bitMaps = { BMapUtil.getBitmapFromView(viewCache)};
 			pop.showPopup(bitMaps, mCurItem.getPoint(), 32);
+			
+			detailButton.setEnabled(true);
+			MapActivity.this.currentLot = lot;
 			return true;
 		}
 		
@@ -319,5 +331,13 @@ public class MapActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
+	}
+	
+	public void onDisplayClick(View sender) {
+		ParkingLot lot = this.currentLot;
+		Gson gson = new Gson();
+		String gsonStr = gson.toJson(lot);
+		Log.i("**", gsonStr);
+		startActivity(new Intent(this, FigureActivity.class).putExtra("data", gsonStr));
 	}
 }

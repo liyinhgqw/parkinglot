@@ -85,7 +85,7 @@
         android:layout_marginBottom="17dp"
         android:layout_toRightOf="@+id/linearLayout1"
         android:onClick="onSearchParkingClick"
-        android:text="GO" />
+        android:text="@string/go" />
 
     <SeekBar
         android:id="@+id/distanceBar"

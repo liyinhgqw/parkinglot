@@ -86,6 +86,10 @@
             android:name="com.example.ipark.MapActivity"
             android:label="@string/title_activity_map" >
         </activity>
+        <activity
+            android:name="com.example.ipark.FigureActivity"
+            android:label="@string/title_activity_figure" >
+        </activity>
     </application>
 
 </manifest>
