@@ -108,6 +108,7 @@ public class ChartFragment extends Fragment implements OnClickListener {
 		String gsonStr = bundle.getString("data");
 		Gson gson = new Gson();
 		this.lot = gson.fromJson(gsonStr, ParkingLot.class);
+		Log.i("**===", this.lot + "");
 		
 		mItems = new ArrayList<String>();
 		mSeries = new HashMap<String, TimeSeries>();
@@ -186,7 +187,8 @@ public class ChartFragment extends Fragment implements OnClickListener {
 		double[] yvs = new double[size];
 		for (int i=0; i<size; i++) {
 			xvs[i] = i;
-			yvs[i] = rand.nextDouble();
+//			yvs[i] = rand.nextDouble();
+			yvs[i] = lot.getRecode()[i];
 		}
 		
 		addXYSeries(title, xvs, yvs, 0);

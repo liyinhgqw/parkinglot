@@ -17,6 +17,7 @@
     <string name="days">日统计</string>
     <string name="periods">时段统计</string>
     <string name="avail">哪里有空位</string>
+    <string name="dummy_content">iPark</string>
     
     <string name="title_activity_map">iPark</string>
     <string name="label_park_lot_name">名称：</string>

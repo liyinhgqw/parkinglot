@@ -322,7 +322,7 @@ public class MapActivity extends Activity {
 			popupPrice.setText(lot.getPrice().toString());
 			popupMaxNum.setText(lot.getMaxNum()+"");
 			popupIdleNum.setText(lot.getIdleNum()+"");
-//			popupIndex.setText(lot.getIndex() + "");
+			popupIndex.setText(lot.getIndex() + "");
 			Bitmap[] bitMaps = { BMapUtil.getBitmapFromView(viewCache)};
 			pop.showPopup(bitMaps, mCurItem.getPoint(), 32);
 			

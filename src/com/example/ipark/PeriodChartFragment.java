@@ -195,7 +195,8 @@ public class PeriodChartFragment extends Fragment implements OnClickListener {
 			else 
 				xvs[i].setMinutes(30);
 			
-			yvs[i] = rand.nextDouble();
+//			yvs[i] = rand.nextDouble();
+			yvs[i] = lot.getOneDayRecorde()[i];
 		}
 		
 		addXYSeries(title, xvs, yvs, 0);

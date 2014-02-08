@@ -32,7 +32,7 @@ public class SearchService {
 			// new
 			// String[]{"f8b78cf497fbcd02b5147f01,fd8826e6dab27c560b1cc77e"});
 			String url = buildUrl(Constants.API_PATH, new String[] { "location", 
-					"&dis", "&hour" },
+					"dis", "hour" },
 					new String[] { where, "" + dist, "" + hour });
 
 			Log.i("**", url);
@@ -42,6 +42,7 @@ public class SearchService {
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {
 				String data = stream2String(entity.getContent());
+				Log.i("@@", "" +data);
 				return data;
 			}
 

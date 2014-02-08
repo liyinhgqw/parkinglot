@@ -1,6 +1,5 @@
 package com.wandoujia.mms.model.dao;
 
-
 /**
  * Created with IntelliJ IDEA.
  * User: chendong
@@ -9,6 +8,30 @@ package com.wandoujia.mms.model.dao;
  * To change this template use File | Settings | File Templates.
  */
 public class ParkingLot {
+
+    public Integer[] getRecode() {
+        return recode;
+    }
+
+    public void setRecode(Integer[] recode) {
+        this.recode = recode;
+    }
+
+    public Double getIndex() {
+        return index;
+    }
+
+    public void setIndex(Double index) {
+        this.index = index;
+    }
+
+    public Integer[] getOneDayRecorde() {
+        return oneDayRecorde;
+    }
+
+    public void setOneDayRecorde(Integer[] oneDayRecorde) {
+        this.oneDayRecorde = oneDayRecorde;
+    }
 
     public static class Location {
         public Double lat;
@@ -22,6 +45,9 @@ public class ParkingLot {
     private Integer maxNum;
     private Integer idleNum;
     private String description;
+    private Integer[] recode;
+    private Integer[] oneDayRecorde;
+    private Double index;
 
     public String getName() {
         return name;
