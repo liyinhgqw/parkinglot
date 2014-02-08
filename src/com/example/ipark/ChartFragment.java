@@ -175,7 +175,7 @@ public class ChartFragment extends Fragment implements OnClickListener {
 //
 //		mTimer.start();
 		
-		String title = "百日车位空闲比例：from NOW-100 (day) to NOW-1 (day)";
+		String title = "百日空闲车位：from NOW-100 (day) to NOW-1 (day)";
 		
 //		double[] xvs = new double[] {1.0, 2.0, 3.0};
 //		double[] yvs = new double[] {1.0, 2.0, 3.0};

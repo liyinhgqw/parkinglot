@@ -59,7 +59,9 @@ public class MapActivity extends Activity {
 	public MapView.LayoutParams layoutParam = null;
 	public OverlayItem mCurItem = null;
 	public Button detailButton = null;
-
+	public Button availButton = null;
+	public Boolean avail = false;
+	
 	public String place;
 	
 	public double dist;
@@ -83,6 +85,7 @@ public class MapActivity extends Activity {
 		setContentView(R.layout.map_activity);
 		
 		detailButton = (Button) findViewById(R.id.detailButton);
+		availButton = (Button) findViewById(R.id.availButton);
 //		detailButton.setEnabled(false);
 		
 		// 初始化搜索模块，注册搜索事件监听
@@ -175,7 +178,7 @@ public class MapActivity extends Activity {
 		mSearch.geocode(place, "北京");
 	}
 
-	public void ShowParkingLots() {
+	public void ShowParkingLots(Boolean avail) {
 		// 设定地图中心点
 		Location center = GetCenterLocation();
         GeoPoint p = new GeoPoint((int)(center.lat * 1E6), (int)(center.lng* 1E6));
@@ -186,6 +189,12 @@ public class MapActivity extends Activity {
 		mOverlay = new MyOverlay(getResources().getDrawable(
 				R.drawable.icon_gcoding), mMapView);
 		for (int i = parking_lots.size() - 1; i >=0; --i) {  // from the last, so the 1st on the top
+			ParkingLot parkingLot = parking_lots.get(i);
+			if (avail) {
+				if (parkingLot.getIdleNum() <= 0)
+					continue;
+			}
+			
 			/**
 			 * 准备overlay 数据
 			 */
@@ -210,6 +219,7 @@ public class MapActivity extends Activity {
          /**
           * 将overlay 添加至MapView中
           */
+         mMapView.getOverlays().clear();
          mMapView.getOverlays().add(mOverlay);
          /**
           * 刷新地图
@@ -343,5 +353,17 @@ public class MapActivity extends Activity {
 		String gsonStr = gson.toJson(lot);
 		Log.i("**", gsonStr);
 		startActivity(new Intent(this, FigureActivity.class).putExtra("data", gsonStr));
+	}
+	
+	public void onAvailClick(View sender) {
+		if (!avail) {
+			ShowParkingLots(true);
+			availButton.setText("显示所有");
+			avail = true;
+		} else {
+			ShowParkingLots(false);
+			availButton.setText("哪里有空位");
+			avail = false;
+		}
 	}
 }

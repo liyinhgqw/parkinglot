@@ -21,10 +21,19 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentBottom="true"
-	    android:layout_alignParentLeft="true"
-	    android:layout_alignParentRight="true"
+	    android:layout_toRightOf="@+id/availButton"
 	    android:layout_marginBottom="10dp"
 	    android:onClick="onDisplayClick"
 	    android:text="@string/detail" />
+	
+	<Button
+	    android:id="@+id/availButton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentLeft="true"
+	    android:layout_marginBottom="10dp"
+	    android:onClick="onAvailClick"
+	    android:text="@string/avail" />
 
 </RelativeLayout>

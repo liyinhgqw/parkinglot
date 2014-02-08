@@ -48,7 +48,7 @@ public class AsysncTaskSearch extends AsyncTask<Void, Void, String> {
 		} else {
 			MapActivity mapActiviy = (MapActivity)(c);
 			mapActiviy.parking_lots = pResult.getResults();
-			mapActiviy.ShowParkingLots();
+			mapActiviy.ShowParkingLots(false);
 		}
 	}
 

@@ -175,7 +175,7 @@ public class PeriodChartFragment extends Fragment implements OnClickListener {
 //
 //		mTimer.start();
 		
-		String title = "平均每日车位空闲比例：from 0:00 to 24:00";
+		String title = "平均每日空闲车位数：from 0:00 to 24:00";
 		
 //		Date[] xvs = new Date[3];
 //		xvs[0] = new Date(); xvs[0].setHours(1); xvs[0].setMinutes(0);
